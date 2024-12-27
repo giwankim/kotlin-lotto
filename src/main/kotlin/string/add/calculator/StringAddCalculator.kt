@@ -16,10 +16,10 @@ object StringAddCalculator {
 
     private fun split(text: String): List<String> {
         val matchResult = CUSTOM_DELIMITER_PATTERN.matchEntire(text)
-        if (matchResult != null) {
-            val (delimiter, numbers) = matchResult.destructured
-            return numbers.split(delimiter)
+        if (matchResult == null) {
+            return text.split(COMMA, COLON)
         }
-        return text.split(COMMA, COLON)
+        val (delimiter, numbers) = matchResult.destructured
+        return numbers.split(delimiter)
     }
 }
